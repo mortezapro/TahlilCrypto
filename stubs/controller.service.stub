@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Request;
+use App\Models\{{ name }}Model;
+use App\Services\{{ name }}\{{ name }}Service;
+use Illuminate\Support\Facades\App;
+use App\Http\Requests\{{ name }}Request;
+
+class {{ name }}Controller extends Controller
+{
+
+    public {{ name }}Service ${{ method }}Service;
+
+    public function __construct()
+    {
+        $this->{{ method }}Service = App::make({{ name }}Service::class);
+    }
+
+    public function index()
+    {
+        ${{ method }}s = $this->{{ method }}Service->paginate(10);
+        return view("panel.{{ method }}s.index",compact("{{ method }}s"));
+    }
+
+    public function create()
+    {
+        return view("panel.{{ method }}s.new");
+    }
+
+    public function edit({{ name }}Model ${{ method }})
+    {
+        return view("panel.{{ method }}s.edit",compact("{{ method }}"));
+    }
+
+    public function store({{ name }}Request $request, {{ name }}Model ${{ method }} = null)
+    {
+        ${{ method }}Data = $request->all();
+
+        ${{ method }} ? $this->{{ method }}Service->save(${{ method }}Data,${{ method }}->id) : ${{ method }} = $this->{{ method }}Service->save(${{ method }}Data);
+
+        // there is a situation that {{ method }} has not changed, but gallery request changed. this situation {{ name }}Observer has not performed updated method.
+        // so, we should check gallery request in the controller.
+        // if request has any gallery then upload it and save to db and sync galleriables
+        // and also category request
+
+        if(${{ method }}){
+            return redirect()->route('admin.{{ method }}s.index')->with('save',true);
+        }
+        return abort(500);
+    }
+
+    public function destroy({{ name }}Model ${{ method }})
+    {
+        if( $this->{{ method }}Service->delete(${{ method }}) ){
+            return redirect()->route("admin.{{ method }}s.index")->with("delete",true);
+        }
+    }
+
+}

@@ -1,0 +1,43 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Models\{{ model }};
+use App\Repositories\{{ name }}\{{ name }}RepositoryInterface;
+use Illuminate\Support\Facades\App;
+
+class {{ name }}Service{
+
+    public {{ name }}RepositoryInterface ${{ method }}Repository;
+
+    public function __construct()
+    {
+        $this->{{ method }}Repository = App::make({{ name }}RepositoryInterface::class);
+    }
+
+    public function get(array $condition)
+    {
+        return $this->{{ method }}Repository->get($condition);
+    }
+
+    public function paginate(int $paginate)
+    {
+        return $this->{{ method }}Repository->paginate($paginate);
+    }
+
+    public function save(array $post,int $id = null)
+    {
+        return $this->{{ method }}Repository->save($post,$id);
+    }
+
+    public function update(array $post,string $slug)
+    {
+        return $this->{{ method }}Repository->save($post,$slug);
+    }
+
+    public function delete({{ model }} ${{ method }})
+    {
+        return ${{ method }}->delete();
+    }
+
+}

@@ -1,0 +1,17 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Models\{{ model }};
+use App\Repositories\Base\BaseRepository;
+use Illuminate\Database\Eloquent\Model;
+
+class {{ name }} extends BaseRepository implements {{ interface }}{
+
+    public Model $model;
+    public function __construct( {{ model }} $model)
+    {
+        $this->model = $model;
+    }
+
+}
