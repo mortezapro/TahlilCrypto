@@ -10,10 +10,12 @@ use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Gallery\GalleryRepository;
 use App\Repositories\Gallery\GalleryRepositoryInterface;
+use App\Repositories\Permission\PermissionRepository;
+use App\Repositories\Permission\PermissionRepositoryInterface;
 use App\Repositories\Post\PostRepository;
 use App\Repositories\Post\PostRepositoryInterface;
-use App\Services\Base\BaseService;
-use App\Services\Base\BaseServiceInterface;
+use App\Repositories\Role\RoleRepository;
+use App\Repositories\Role\RoleRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -30,10 +32,6 @@ class RepositoryServiceProvider extends ServiceProvider
             BaseRepository::class,
         );
         $this->app->bind(
-            BaseServiceInterface::class,
-            BaseService::class,
-        );
-        $this->app->bind(
             ActivityRepositoryInterface::class,
             ActivityRepository::class,
         );
@@ -48,6 +46,14 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             GalleryRepositoryInterface::class,
             GalleryRepository::class,
+        );
+        $this->app->bind(
+            PermissionRepositoryInterface::class,
+            PermissionRepository::class,
+        );
+        $this->app->bind(
+            RoleRepositoryInterface::class,
+            RoleRepository::class,
         );
     }
 

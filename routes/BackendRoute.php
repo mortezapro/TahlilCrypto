@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\CacheController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,4 +43,34 @@ Route::post('/videos/{video:slug?}',[VideoController::class,"store"])->name("vid
 Route::get('/videos/{video:slug}',[VideoController::class,"show"])->name("videos.show");
 Route::get('/videos/{video:slug}/edit',[VideoController::class,"edit"])->name("videos.edit");
 Route::delete('/videos/{video:slug}',[VideoController::class,"destroy"])->name("videos.destroy");
+
+//Permission route
+Route::get('/permissions',[PermissionController::class,"index"])->name("permissions.index");
+Route::get('/permissions/create',[PermissionController::class,"create"])->name("permissions.create");
+Route::post('/permissions/{permission:slug?}',[PermissionController::class,"store"])->name("permissions.store");
+Route::get('/permissions/{permission:slug}',[PermissionController::class,"show"])->name("permissions.show");
+Route::get('/permissions/{permission:slug}/edit',[PermissionController::class,"edit"])->name("permissions.edit");
+Route::delete('/permissions/{permission:slug}',[PermissionController::class,"destroy"])->name("permissions.destroy");
+
+Route::post('/permissions/assign-to-role/{role:name}',[PermissionController::class,"assignToRole"])->name("permissions.assign.to.role");
+Route::post('/permissions/refresh-role/{role:name}',[PermissionController::class,"refreshRole"])->name("permissions.refresh.role");
+Route::post('/permissions/assign-to-user/{user}',[PermissionController::class,"assignToUser"])->name("permissions.assign.to.user");
+Route::post('/permissions/refresh-user/{user}',[PermissionController::class,"refreshUser"])->name("Permissions.refresh.user");
+
+// Roles route
+Route::get('/roles',[RoleController::class,"index"])->name("roles.index");
+Route::get('/roles/create',[RoleController::class,"create"])->name("roles.create");
+Route::post('/roles/{role:slug?}',[RoleController::class,"store"])->name("roles.store");
+Route::get('/roles/{role:slug}',[RoleController::class,"show"])->name("roles.show");
+Route::get('/roles/{role:slug}/edit',[RoleController::class,"edit"])->name("roles.edit");
+Route::delete('/roles/{role:slug}',[RoleController::class,"destroy"])->name("roles.destroy");
+
+Route::post('/roles/assign-to-user/{user}',[RoleController::class,"assignToUser"])->name("roles.assign.to.user");
+Route::post('/roles/refresh-roles/{user}',[RoleController::class,"refreshRoles"])->name("refreshRoles");
+
+
+
+
+
+
 

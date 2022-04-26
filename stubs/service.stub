@@ -25,14 +25,14 @@ class {{ name }}Service{
         return $this->{{ method }}Repository->paginate($paginate);
     }
 
-    public function save(array $post,int $id = null)
+    public function save(array ${{ method }},int $id = null)
     {
-        return $this->{{ method }}Repository->save($post,$id);
+        return $this->{{ method }}Repository->save(${{ method }},$id);
     }
 
-    public function update(array $post,string $slug)
+    public function update(array ${{ method }},int $id)
     {
-        return $this->{{ method }}Repository->save($post,$slug);
+        return $this->{{ method }}Repository->save(${{ method }},$id);
     }
 
     public function delete({{ model }} ${{ method }})

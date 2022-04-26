@@ -25,14 +25,14 @@ class SearchHistoryService{
         return $this->searchHistoryRepository->paginate($paginate);
     }
 
-    public function save(array $post,int $id = null)
+    public function save(array $searchHistory,int $id = null)
     {
-        return $this->searchHistoryRepository->save($post,$id);
+        return $this->searchHistoryRepository->save($searchHistory,$id);
     }
 
-    public function update(array $post,string $slug)
+    public function update(array $searchHistory,int $id)
     {
-        return $this->searchHistoryRepository->save($post,$slug);
+        return $this->searchHistoryRepository->save($searchHistory,$id);
     }
 
     public function delete(SearchHistoryModel $searchHistory)

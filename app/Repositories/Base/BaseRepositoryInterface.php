@@ -11,4 +11,5 @@ interface BaseRepositoryInterface{
     public function truncate();
     public function save(array $data,int $id = null);
     public function count(array $condition);
+    public function whereIn(string $column,array $data);
 }

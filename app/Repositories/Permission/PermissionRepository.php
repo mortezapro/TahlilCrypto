@@ -2,9 +2,11 @@
 
 namespace App\Repositories\Permission;
 
+use App\Helpers\ArrayClass;
 use App\Models\PermissionModel;
 use App\Repositories\Base\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class PermissionRepository extends BaseRepository implements PermissionRepositoryInterface{
 
@@ -14,4 +16,11 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
         $this->model = $model;
     }
 
+    public function getAllPermissions(...$permissions)
+    {
+        $this->generateCacheKey(__FUNCTION__);
+        return Cache::remember($this->cacheKey,$this->cacheDuration , function () use ($permissions) {
+            return $this->model->whereIn("name",ArrayClass::flatten($permissions))->get();
+        });
+    }
 }

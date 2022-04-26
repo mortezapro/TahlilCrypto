@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Services\Permission\Traits\HasPermission;
 use App\Traits\HasActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class RoleModel extends Model
 {
-    use HasFactory,HasActivity;
+    use HasFactory,HasActivity,HasPermission;
     protected $table = "roles";
     protected $primaryKey = "id";
     protected $fillable = [

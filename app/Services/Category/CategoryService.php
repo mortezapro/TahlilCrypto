@@ -7,17 +7,13 @@ use App\Helpers\Images;
 use App\Models\CategoryModel;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
-use App\Services\Base\BaseService;
 use Illuminate\Support\Facades\App;
 
-class CategoryService extends BaseService {
+class CategoryService {
     protected CategoryRepositoryInterface $categoryRepository;
-    protected BaseService $baseService;
     public function __construct()
     {
         $this->categoryRepository = App::make(CategoryRepository::class);
-        $this->baseService = new BaseService($this->categoryRepository);
-//         dd($this->baseService->get(["title","like","%a%"]));
     }
 
     public function paginate(int $paginate)
@@ -30,14 +26,14 @@ class CategoryService extends BaseService {
         return $this->categoryRepository->get($condition);
     }
 
-    public function save(array $object,int $id= null)
+    public function save(array $category,int $id= null)
     {
-        return $this->categoryRepository->save($object,$id);
+        return $this->categoryRepository->save($category,$id);
     }
 
-    public function update(array $object,string $slug)
+    public function update(array $category,int $id)
     {
-        return $this->categoryRepository->save($object,$slug);
+        return $this->categoryRepository->save($category,$id);
     }
 
     public function delete(CategoryModel $model)
@@ -47,15 +43,15 @@ class CategoryService extends BaseService {
 
 
 
-    public function syncCategory($object,array $categoryIds)
+    public function syncCategory($category,array $categoryIds)
     {
-        return $object->categories()->sync($categoryIds);
+        return $category->categories()->sync($categoryIds);
     }
 
-    public function detachCategory($object)
+    public function detachCategory($category)
     {
-        if($object->categories->count()){
-            $object->categories()->detach(null);
+        if($category->categories->count()){
+            $category->categories()->detach(null);
         }
     }
 

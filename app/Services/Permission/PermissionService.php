@@ -2,7 +2,10 @@
 
 namespace App\Services\Permission;
 
+use App\Helpers\ArrayClass;
 use App\Models\PermissionModel;
+use App\Models\RoleModel;
+use App\Models\User;
 use App\Repositories\Permission\PermissionRepositoryInterface;
 use Illuminate\Support\Facades\App;
 
@@ -25,14 +28,14 @@ class PermissionService{
         return $this->permissionRepository->paginate($paginate);
     }
 
-    public function save(array $post,int $id = null)
+    public function save(array $permission,int $id = null)
     {
-        return $this->permissionRepository->save($post,$id);
+        return $this->permissionRepository->save($permission,$id);
     }
 
-    public function update(array $post,string $slug)
+    public function update(array $permission,int $id)
     {
-        return $this->permissionRepository->save($post,$slug);
+        return $this->permissionRepository->save($permission,$id);
     }
 
     public function delete(PermissionModel $permission)
@@ -40,4 +43,27 @@ class PermissionService{
         return $permission->delete();
     }
 
+    public function getAllPermissions(... $permissions)
+    {
+        return $this->permissionRepository->getAllPermissions($permissions);
+    }
+
+    public function assignToUser(array $permissions,User $user)
+    {
+        return $user->givePermissionsToUser($permissions);
+    }
+
+    public function assignToRole(array $permissions, RoleModel $role)
+    {
+        return $role->givePermissionsToRole($permissions);
+    }
+
+    public function refreshUser(array $permissions,User $user)
+    {
+        return $user->refreshPermissionsOfUsers($permissions);
+    }
+    public function refreshRole(array $permissions,RoleModel $role)
+    {
+        return $role->refreshPermissionsOfRoles($permissions);
+    }
 }

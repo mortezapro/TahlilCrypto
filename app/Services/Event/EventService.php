@@ -31,9 +31,9 @@ class EventService{
         return $this->eventRepository->save($event,$id);
     }
 
-    public function update(array $event,string $slug)
+    public function update(array $event,int $id)
     {
-        return $this->eventRepository->save($event,$slug);
+        return $this->eventRepository->save($event,$id);
     }
 
     public function delete(EventModel $event)

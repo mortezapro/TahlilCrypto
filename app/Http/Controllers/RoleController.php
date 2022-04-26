@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Request;
+use App\Helpers\DataTable;
+use App\Models\PermissionModel;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Models\RoleModel;
 use App\Services\Role\RoleService;
 use Illuminate\Support\Facades\App;
 use App\Http\Requests\RoleRequest;
+use Illuminate\Support\Facades\Cache;
 
 class RoleController extends Controller
 {
@@ -18,7 +22,7 @@ class RoleController extends Controller
         $this->roleService = App::make(RoleService::class);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $roles = $this->roleService->paginate(10);
         return view("panel.roles.index",compact("roles"));
@@ -56,6 +60,16 @@ class RoleController extends Controller
         if( $this->roleService->delete($role) ){
             return redirect()->route("admin.roles.index")->with("delete",true);
         }
+    }
+
+    public function assignToUser(Request $request,User $user)
+    {
+        return $this->roleService->assignToUser($user,$request->input("roles"));
+    }
+
+    public function refreshRoles(Request $request,User $user)
+    {
+        return $this->roleService->refreshRoles($user,$request->input("roles"));
     }
 
 }

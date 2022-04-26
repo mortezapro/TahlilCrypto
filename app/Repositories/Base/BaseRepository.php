@@ -17,7 +17,7 @@ class BaseRepository implements BaseRepositoryInterface{
 
     public function generateCacheKey($functionName)
     {
-        $this->cacheKey = $this->model."_".$functionName;
+        $this->cacheKey = $this->model->getTable()."_".$functionName;
     }
 
     public function get(array $condition)
@@ -77,5 +77,11 @@ class BaseRepository implements BaseRepositoryInterface{
             return $this->model->where($condition[0],$condition[1],$condition[2])->count();
         });
     }
-
+    public function whereIn(string $column,array $data)
+    {
+        $this->generateCacheKey(__FUNCTION__);
+        return Cache::remember($this->cacheKey,$this->cacheDuration , function () use ($column,$data) {
+            return $this->model->whereIn($column,$data)->get();
+        });
+    }
 }

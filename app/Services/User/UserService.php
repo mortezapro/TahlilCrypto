@@ -30,9 +30,9 @@ class UserService{
         return $this->userRepository->save($post,$id);
     }
 
-    public function update(array $post,string $slug)
+    public function update(array $post,int $id)
     {
-        return $this->userRepository->save($post,$slug);
+        return $this->userRepository->save($post,$id);
     }
 
     public function delete(User $user)

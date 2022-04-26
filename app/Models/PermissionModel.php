@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use App\Services\Role\Traits\HasRole;
 use App\Traits\HasActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PermissionModel extends Model
 {
-    use HasFactory,HasActivity;
+    use HasFactory,HasActivity,HasRole;
     protected $table = "permissions";
     protected $primaryKey = "id";
-    protected $guarded = "id";
+    protected $fillable = ["name","display_name"];
 
     public function roles()
     {

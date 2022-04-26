@@ -30,9 +30,9 @@ class VideoService{
         return $this->videoRepository->save($video,$id);
     }
 
-    public function update(array $video,string $slug)
+    public function update(array $video,int $id)
     {
-        return $this->videoRepository->save($video,$slug);
+        return $this->videoRepository->save($video,$id);
     }
 
     public function delete(VideoModel $video)

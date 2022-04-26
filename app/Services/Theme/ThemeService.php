@@ -25,14 +25,14 @@ class ThemeService{
         return $this->themeRepository->paginate($paginate);
     }
 
-    public function save(array $post,int $id = null)
+    public function save(array $theme,int $id = null)
     {
-        return $this->themeRepository->save($post,$id);
+        return $this->themeRepository->save($theme,$id);
     }
 
-    public function update(array $post,string $slug)
+    public function update(array $theme,int $id)
     {
-        return $this->themeRepository->save($post,$slug);
+        return $this->themeRepository->save($theme,$id);
     }
 
     public function delete(ThemeModel $theme)

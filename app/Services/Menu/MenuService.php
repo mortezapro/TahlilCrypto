@@ -25,14 +25,14 @@ class MenuService{
         return $this->menuRepository->paginate($paginate);
     }
 
-    public function save(array $post,int $id = null)
+    public function save(array $menu,int $id = null)
     {
-        return $this->menuRepository->save($post,$id);
+        return $this->menuRepository->save($menu,$id);
     }
 
-    public function update(array $post,string $slug)
+    public function update(array $menu,int $id)
     {
-        return $this->menuRepository->save($post,$slug);
+        return $this->menuRepository->save($menu,$id);
     }
 
     public function delete(MenuModel $menu)

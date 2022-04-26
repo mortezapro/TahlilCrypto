@@ -30,9 +30,9 @@ class PostService{
         return $this->postRepository->save($post,$id);
     }
 
-    public function update(array $post,string $slug)
+    public function update(array $post,int $id)
     {
-        return $this->postRepository->save($post,$slug);
+        return $this->postRepository->save($post,$id);
     }
 
     public function delete(PostModel $post)
