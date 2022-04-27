@@ -35,9 +35,9 @@ class SearchHistoryService{
         return $this->searchHistoryRepository->save($searchHistory,$id);
     }
 
-    public function delete(SearchHistoryModel $searchHistory)
+    public function truncate()
     {
-        return $searchHistory->delete();
+        return $this->searchHistoryRepository->truncate();
     }
 
 }

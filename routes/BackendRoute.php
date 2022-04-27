@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\CacheController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SearchHistoryController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +45,27 @@ Route::post('/videos/{video:slug?}',[VideoController::class,"store"])->name("vid
 Route::get('/videos/{video:slug}',[VideoController::class,"show"])->name("videos.show");
 Route::get('/videos/{video:slug}/edit',[VideoController::class,"edit"])->name("videos.edit");
 Route::delete('/videos/{video:slug}',[VideoController::class,"destroy"])->name("videos.destroy");
+
+//comment route
+Route::get('/comments',[CommentController::class,"index"])->name("comments.index");
+Route::get('/comments/create',[CommentController::class,"create"])->name("comments.create");
+Route::post('/comments/{comment:slug?}',[CommentController::class,"store"])->name("comments.store");
+Route::get('/comments/{comment:slug}',[CommentController::class,"show"])->name("comments.show");
+Route::get('/comments/{comment:slug}/edit',[CommentController::class,"edit"])->name("comments.edit");
+Route::delete('/comments/{comment:slug}',[CommentController::class,"destroy"])->name("comments.destroy");
+
+//comment route
+Route::get('/themes',[CommentController::class,"index"])->name("themes.index");
+Route::get('/themes/create',[CommentController::class,"create"])->name("themes.create");
+Route::post('/themes/{theme:name?}',[CommentController::class,"store"])->name("themes.store");
+Route::get('/themes/{theme:name}',[CommentController::class,"show"])->name("themes.show");
+Route::get('/themes/{theme:name}/edit',[CommentController::class,"edit"])->name("themes.edit");
+Route::delete('/themes/{theme:name}',[CommentController::class,"destroy"])->name("themes.destroy");
+
+//search history route
+Route::get('/search-histories',[SearchHistoryController::class,"index"])->name("search-histories.index");
+Route::get('/search-histories/create',[SearchHistoryController::class,"create"])->name("search-histories.create");
+Route::post('/search-histories/{search-history:slug?}',[SearchHistoryController::class,"store"])->name("search-histories.store");
 
 //Permission route
 Route::get('/permissions',[PermissionController::class,"index"])->name("permissions.index");

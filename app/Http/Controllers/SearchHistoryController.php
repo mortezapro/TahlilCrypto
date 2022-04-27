@@ -51,9 +51,9 @@ class SearchHistoryController extends Controller
         return abort(500);
     }
 
-    public function destroy(SearchHistoryModel $searchHistory)
+    public function destroy()
     {
-        if( $this->searchHistoryService->delete($searchHistory) ){
+        if( $this->searchHistoryService->truncate() ){
             return redirect()->route("admin.searchHistories.index")->with("delete",true);
         }
     }

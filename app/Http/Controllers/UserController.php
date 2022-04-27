@@ -28,26 +28,11 @@ class UserController extends Controller
         return view("panel.users.index",compact("users"));
     }
 
-    public function create()
-    {
-        return view("panel.users.new");
-    }
 
     public function edit(UserModel $user)
     {
         return view("panel.users.edit",compact("user"));
     }
 
-    public function destroy(User $user)
-    {
-        if( $this->userService->delete($user) ){
-            return redirect()->route("admin.users.index")->with("delete",true);
-        }
-    }
-
-    public function hasPermissions(User $user,array $permissions)
-    {
-
-    }
 
 }
