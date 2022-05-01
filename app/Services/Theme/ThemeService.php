@@ -20,6 +20,11 @@ class ThemeService{
         return $this->themeRepository->get($condition);
     }
 
+    public function find(array $condition)
+    {
+        return $this->themeRepository->find($condition);
+    }
+
     public function paginate(int $paginate)
     {
         return $this->themeRepository->paginate($paginate);

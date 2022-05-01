@@ -60,4 +60,9 @@ class PostService{
     {
         return $this->postRepository->related($categoryIds,$post,$count);
     }
+
+    public function Latest(int $count)
+    {
+        return $this->postRepository->latest($count);
+    }
 }

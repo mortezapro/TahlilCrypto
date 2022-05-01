@@ -70,4 +70,9 @@ class CategoryService {
             $image->deleteFile(config("upload_image_path.seo-image"),$category->seo_image);
         }
     }
+
+    public function popular(int $count)
+    {
+        return $this->categoryRepository->popular($count);
+    }
 }

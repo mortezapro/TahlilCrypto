@@ -7,4 +7,5 @@ use App\Repositories\Base\BaseRepositoryInterface;
 
 interface PostRepositoryInterface extends BaseRepositoryInterface {
     public function related(array $categoryIds,PostModel $post,int $count);
+    public function latest(int $count);
 }
