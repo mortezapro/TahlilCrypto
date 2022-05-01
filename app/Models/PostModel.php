@@ -34,7 +34,7 @@ class PostModel extends Model
     protected static function booted()
     {
         static::addGlobalScope('relation', function (Builder $builder) {
-            $builder->with("user")->with("categories")->with("galleries")->with("comments")->orderBy("id","desc");
+            $builder->with("user")->with("categories")->with("galleries")->with("comments")->withCount("comments")->orderBy("id","desc");
         });
     }
 

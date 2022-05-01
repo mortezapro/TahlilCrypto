@@ -55,4 +55,9 @@ class PostService{
             $image->deleteFile(config("upload_image_path.seo-image"),$post->seo_image);
         }
     }
+
+    public function related(array $categoryIds,PostModel $post,int $count)
+    {
+        return $this->postRepository->related($categoryIds,$post,$count);
+    }
 }

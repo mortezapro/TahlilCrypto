@@ -13,5 +13,4 @@ class MenuRepository extends BaseRepository implements MenuRepositoryInterface{
     {
         $this->model = $model;
     }
-
 }

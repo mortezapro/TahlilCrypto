@@ -9,7 +9,7 @@ class BaseRepository implements BaseRepositoryInterface{
 
     protected Model $model;
     protected ?string $cacheKey;
-    protected int $cacheDuration = 600; //per seconds
+    protected int $cacheDuration = 3600; //per seconds // 1 hours
     public function __construct(Model $model)
     {
         $this->model = $model;

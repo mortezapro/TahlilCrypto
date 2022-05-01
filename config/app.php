@@ -178,6 +178,7 @@ return [
 
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\PermissionServiceProvider::class,
+        App\Providers\FrontendServiceProvider::class,
     ],
 
     /*

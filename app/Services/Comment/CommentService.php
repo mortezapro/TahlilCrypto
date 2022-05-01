@@ -38,4 +38,8 @@ class CommentService{
     {
         return $comment->delete();
     }
+    public function count(array $condition)
+    {
+        return $this->commentRepository->count($condition);
+    }
 }

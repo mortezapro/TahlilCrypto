@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ArrayClass;
 use App\Helpers\Images;
 use App\Http\Requests\PostRequest;
 use App\Models\PostModel;
 use App\Repositories\Post\PostRepositoryInterface;
 use App\Services\Category\CategoryService;
+use App\Services\Comment\CommentService;
 use App\Services\Gallery\GalleryService;
 use App\Services\Post\PostService;
 use Illuminate\Support\Facades\App;
@@ -18,12 +20,14 @@ class PostController extends Controller
     public PostService $postService;
     public CategoryService $categoryService;
     public GalleryService $galleryService;
+    public CommentService $commentService;
 
     public function __construct()
     {
         $this->postService = App::make(PostService::class);
         $this->categoryService = App::make(CategoryService::class);
         $this->galleryService = App::make(GalleryService::class);
+        $this->commentService = App::make(CommentService::class);
     }
 
     public function index()
@@ -94,4 +98,10 @@ class PostController extends Controller
         }
     }
 
+    public function show(PostModel $post)
+    {
+        $categoryIds = ArrayClass::flatten($post->categories->pluck("id")->toArray());
+        $relatedPosts = $this->postService->related($categoryIds,$post,8);
+        return view("front.post.index",compact("post","relatedPosts"));
+    }
 }

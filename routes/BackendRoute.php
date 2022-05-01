@@ -26,7 +26,7 @@ Route::delete('/categories/{category:slug}',[CategoryController::class,"destroy"
 Route::get('/posts',[PostController::class,"index"])->name("posts.index");
 Route::get('/posts/create',[PostController::class,"create"])->name("posts.create");
 Route::post('/posts/{post:slug?}',[PostController::class,"store"])->name("posts.store");
-Route::get('/posts/{post:slug}',[PostController::class,"show"])->name("posts.show");
+
 Route::get('/posts/{post:slug}/edit',[PostController::class,"edit"])->name("posts.edit");
 Route::delete('/posts/{post:slug}',[PostController::class,"destroy"])->name("posts.destroy");
 
@@ -49,7 +49,6 @@ Route::delete('/videos/{video:slug}',[VideoController::class,"destroy"])->name("
 //comment route
 Route::get('/comments',[CommentController::class,"index"])->name("comments.index");
 Route::get('/comments/create',[CommentController::class,"create"])->name("comments.create");
-Route::post('/comments/{comment:slug?}',[CommentController::class,"store"])->name("comments.store");
 Route::get('/comments/{comment:slug}',[CommentController::class,"show"])->name("comments.show");
 Route::get('/comments/{comment:slug}/edit',[CommentController::class,"edit"])->name("comments.edit");
 Route::delete('/comments/{comment:slug}',[CommentController::class,"destroy"])->name("comments.destroy");
