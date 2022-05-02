@@ -31,7 +31,7 @@ class CommentModel extends Model
     protected static function booted()
     {
         static::addGlobalScope('relation', function (Builder $builder) {
-            $builder->with("user")->with("commentable")->with("reply")->orderBy("id","desc");
+            $builder->with("user")->with("comments")->with("reply")->orderBy("id","desc");
         });
     }
 
